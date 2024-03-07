@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Details</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      .details {
+        margin: 20px auto;
+        max-width: 600px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .details-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .details-list h2,
+      h3 {
+        background-color: #ffffff;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      .details-list span {
+        font-weight: bold;
+      }
+      .deletebtn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 16px;
+        background-color: #ff4d4d;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .deletebtn:hover {
+        background-color: #e60000;
+      }
+      form {
+        margin-top: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        margin-top: 20px;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      input[type='text'] {
+        margin-top: 10px;
+        width: calc(100% - 10px);
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #cccccc;
+      }
+
+      input[type='submit'] {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 16px;
+        background-color: #077916;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+
+      input[type='submit']:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>User Details</h2>
+      <div class="details">
+        <ul class="details-list">
+          <h2><span>ID:</span> <%= info.id %></h2>
+          <h3><span>Name:</span> <%= info.name %></h3>
+          <form action="/info/<%= info._id %>/update" method="post">
+            <div class="form-group">
+              <label for="updateName">Update ID:</label>
+              <input
+                type="text"
+                id="updateName"
+                name="id"
+                placeholder="Enter updated id"
+              />
+              <label for="updateName">Update Name:</label>
+              <input
+                type="text"
+                id="updateName"
+                name="name"
+                placeholder="Enter updated name"
+              />
+            </div>
+            <input type="submit" value="Update" />
+          </form>
+          <a href="#" class="deletebtn" data-id="<%= info._id %>">Delete</a>
+          <!-- Add more details here if needed -->
+        </ul>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px">
+      <a
+        href="/info"
+        style="
+          text-decoration: none;
+          background-color: rgb(75, 174, 255);
+          color: #ffffff;
+          padding: 10px 20px;
+          border-radius: 5px;
+        "
+        >Go to All Users</a
+      >
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const deleteButtons = document.querySelectorAll('.deletebtn');
+        deleteButtons.forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = e.target.getAttribute('data-id');
+            fetch(`/info/${id}`, {
+              method: 'DELETE',
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                window.location.href = data.redirect;
+              })
+              .catch((err) => {
+                console.error('Error:', err);
+              });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

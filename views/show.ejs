@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of People</title>
+</head>
+<body>
+    <h1>Create person</h1>
+    <form id="blogForm" action="/allperson" method="post" style="display: flex; flex-direction: column; margin-left: 20px; padding: 20px; width: 500px; background-color: bisque; border-radius: 7px;box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);">
+        <label for="title">Name:</label>
+        <input type="text" id="title" name="name" required>
+      <br><br>
+        <label for="snippet">Age:</label>
+        <input type="number" id="snippet" name="age" required>
+      <br><br>
+        <input type="submit" value="Submit" style="width: 200px;">
+      </form>
+      
+      <div class="blogs" style="margin: 20px ">
+      <h2>All Blogs</h2>
+    <h1>List of People</h1>
+    <ul>
+        <% people.forEach(person => { %>
+            <li><%= person.name %> - <%= person.age %> years old</li>
+        <% }); %>
+    </ul>
+
+    
+    
+</body>
+</html>

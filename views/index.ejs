@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website | <%=title%></title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+      }
+
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li {
+        display: inline;
+        margin-right: 20px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      section {
+        padding: 20px;
+      }
+
+      section#home {
+        background-color: #f0f0f0;
+      }
+
+      section#products {
+        background-color: #e6e6e6;
+      }
+
+      section#about {
+        background-color: #dcdcdc;
+      }
+
+      section#contact {
+        background-color: #ccc;
+      }
+      form {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    </style>
+  </head>
+  <body>
+    <%- include('./partials/nav.ejs')   %>
+
+    
+    <form id="blogForm" action="/blogs" method="post">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+    
+      <label for="snippet">Snippet:</label>
+      <input type="text" id="snippet" name="snippet" required>
+    
+      <label for="blog">Body:</label>
+      <textarea id="blog" name="body" rows="5" required></textarea>
+    
+      <input type="submit" value="Submit">
+    </form>
+    
+    <div class="blogs" style="margin: 20px ">
+    <h2>All Blogs</h2>
+
+      <% if(blogs.length > 0) { %>
+        <% blogs.forEach(blog=> { %>
+          <a style="text-decoration: none; color: #4caf50;" href="/blogs/<%=blog.id%>">
+             <h3><%= blog.title %></h3>
+             <p><%= blog.snippet %></p>
+             <p><%= blog.body %></p>
+            </a>
+        <% }) %>
+    <% } else {%>
+          <h2>No Blogs to display ✍️</h2>
+          <%}%>
+    </div>
+  </body>
+</html>

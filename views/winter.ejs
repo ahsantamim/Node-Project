@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore Winter</title>
+  </head>
+  <style>
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+    }
+  </style>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    "
+  >
+    <%- include('./partials/nav.ejs') %>
+    <header
+      style="
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      "
+    >
+      <h1 style="margin: 0">Explore Winter</h1>
+      <p>Discover the beauty of winter</p>
+    </header>
+
+    <div
+      style="
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <div style="margin-top: 20px">
+        <h2>Winter Wonderland</h2>
+        <p>
+          Winter is a magical season filled with snow-covered landscapes, cozy
+          nights by the fire, and outdoor adventures.
+        </p>
+        <img
+          src="https://via.placeholder.com/800x400"
+          alt="Winter Landscape"
+          style="max-width: 100%; height: auto"
+        />
+        <p>
+          From skiing and snowboarding to ice skating and building snowmen,
+          there's something for everyone to enjoy during the winter months.
+        </p>
+        <p>
+          Explore the beauty of winter and create unforgettable memories with
+          friends and family.
+        </p>
+      </div>
+    </div>
+<div class="ewu">
+  <% if(ewus.length > 0) { %>
+    <% ewus.forEach(person=> { %>
+      
+         <h3><%= person.name %></h3>
+         <p><%= person.id %></p>
+         <p><%=person.department %></p>
+      
+    <% }) %>
+<% } else {%>
+      <h2>No Blogs to display ✍️</h2>
+      <%}%>
+</div>
+    <footer
+      style="
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      "
+    >
+      <p>&copy; 2024 Explore Winter</p>
+    </footer>
+  </body>
+</html>
